@@ -1,37 +1,26 @@
-import { NavLink } from "react-router-dom";
-import styled from "styled-components";
-
-const List = styled.ul`
-display: flex;
-gap: 60px;
-align-items: center;
-padding: 10px 15px;
-`
-
-const NavItem = styled(NavLink)`
-  font-size: 24px;
-  font-weight: 500;
-  color: inherit;
-  padding: 0 5px;
-  border-radius: 4px;
-  &.active {
-    color: tomato;
-  }
-`;
+import { List, NavItem, Caption, Container } from './MovieExtraInfo.styled';
+import { MdOutlineRecentActors, MdPreview } from 'react-icons/md';
 
 const MovieExtraInfo = () => {
-    return (
-      <>
-        <List>
-          <li>
-            <NavItem to="cast">Cast</NavItem>
-          </li>
-          <li>
-            <NavItem to="reviews">Reviews</NavItem>
-          </li>
-        </List>
-      </>
-    );
-}
+  return (
+    <Container>
+      <Caption>Additional information</Caption>
+      <List>
+        <li>
+          <NavItem to="cast">
+            <MdOutlineRecentActors size="25px" />
+            Cast
+          </NavItem>
+        </li>
+        <li>
+          <NavItem to="reviews">
+            <MdPreview size="25px" />
+            Reviews
+          </NavItem>
+        </li>
+      </List>
+    </Container>
+  );
+};
 
 export default MovieExtraInfo;

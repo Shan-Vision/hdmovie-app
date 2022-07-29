@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
-import { NavLink, Outlet } from 'react-router-dom';
+import { NavLink, Outlet, useLocation } from 'react-router-dom';
 import { getPopularMovies } from 'service/FetchMovies';
 import { Title, MovieList } from './Home.styled';
 
 const Home = () => {
   const [movies, setMovies] = useState([]);
+  const location= useLocation()
 
   useEffect(() => {
     getPopularMovies()
@@ -16,9 +17,9 @@ const Home = () => {
     <main>
       <Title>Trending today</Title>
       <MovieList>
-        {movies.map(({ id, title, name, release_date }) => (
+        {movies.map(({ id, title, name}) => (
           <li key={id}>
-            <NavLink to={`/movies/${id}`}>{title || name} </NavLink>
+            <NavLink to={`/movies/${id}`} state={{from: location}}>{title || name} </NavLink>
           </li>
         ))}
       </MovieList>

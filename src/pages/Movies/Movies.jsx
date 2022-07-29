@@ -1,16 +1,16 @@
 import { useState, useEffect } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useLocation, useSearchParams } from 'react-router-dom';
 import { Box } from '../../components/Box';
 import { getMovieListByName } from 'service/FetchMovies';
 import MovieList from 'components/MovieList/MovieList';
-import { Button , Form, Input} from './Movies.styled';
+import { Button, Form, Input } from './Movies.styled';
 // import {  Outlet } from 'react-router-dom';
-
 
 const Movies = () => {
   const [movieList, setMovieList] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
-  const searchQuery = searchParams.get('query');
+  const searchQuery = searchParams.get('query') ?? '';
+  const location = useLocation();
 
   useEffect(() => {
     if (searchQuery === '' || searchQuery === null) return;
@@ -21,8 +21,8 @@ const Movies = () => {
   const handleSubmit = event => {
     event.preventDefault();
     const form = event.currentTarget;
-  
-    setSearchParams({ query: form.elements.name.value });
+    const value = form.elements.name.value;
+    setSearchParams(value !== '' ? { query: value } : {});
 
     form.reset();
   };
@@ -34,7 +34,9 @@ const Movies = () => {
         <Button type="submit">Search</Button>
       </Form>
 
-      {movieList.length > 0 && <MovieList movieList={movieList} />}
+      {movieList.length > 0 && (
+        <MovieList movieList={movieList} location={location} />
+      )}
     </Box>
   );
 };
