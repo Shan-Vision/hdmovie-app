@@ -29,18 +29,23 @@ const Reviews = () => {
 
   return (
     <div>
-      <ReviewList>
-        {reviews.map(({ author, content, id }) => (
-          <ReviewItem key={id}>
-            <p>
-              Author: <b>{author}</b>
-            </p>
-            <p>{content}</p>
-          </ReviewItem>
-        ))}
-      </ReviewList>
+      {reviews && (
+        <ReviewList>
+          {reviews.map(({ author, content, id }) => (
+            <ReviewItem key={id}>
+              <p>
+                Author: <b>{author}</b>
+              </p>
+              <p>{content}</p>
+            </ReviewItem>
+          ))}
+        </ReviewList>
+      )}
+      {reviews?.length === 0 && <p>There is no information</p>}
     </div>
   );
 };
 
 export default Reviews;
+
+// {credits?.length === 0 && }

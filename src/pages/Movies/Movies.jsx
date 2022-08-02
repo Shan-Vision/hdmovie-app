@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useLocation, useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 import { Box } from '../../components/Box';
 import { getMovieListByName } from 'service/FetchMovies';
 import MovieList from 'components/MovieList/MovieList';
@@ -10,7 +10,6 @@ const Movies = () => {
   const [movieList, setMovieList] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
   const searchQuery = searchParams.get('query') ?? '';
-  const location = useLocation();
 
   useEffect(() => {
     if (searchQuery === '' || searchQuery === null) return;
@@ -26,7 +25,6 @@ const Movies = () => {
 
     form.reset();
   };
-
   return (
     <Box as="main">
       <Form onSubmit={handleSubmit}>
@@ -34,9 +32,7 @@ const Movies = () => {
         <Button type="submit">Search</Button>
       </Form>
 
-      {movieList.length > 0 && (
-        <MovieList movieList={movieList} location={location} />
-      )}
+      {movieList.length > 0 && <MovieList movieList={movieList} />}
     </Box>
   );
 };

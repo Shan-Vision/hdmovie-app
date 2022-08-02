@@ -21,8 +21,9 @@ const MovieDetails = () => {
   }
   detail.genres.map(genre => genreList.push(genre.name));
   const { poster_path, original_title, release_date, overview } = detail;
-
+console.log('locationDetails :>> ', location.state);
   const backLinkHref = location.state?.from ?? '/movies';
+
 
   return (
     <main>
@@ -48,7 +49,7 @@ const MovieDetails = () => {
           </MovieInfoBox>
         </Container>
       )}
-      <MovieExtraInfo />
+      <MovieExtraInfo location={backLinkHref} />
       <Outlet />
     </main>
   );
