@@ -87,9 +87,13 @@ export function getMovieReviews(id) {
 }
 
 function mapper(data) {
-  return data.results.map(({ id, title, release_date }) => ({
-    id,
-    title,
-    release_date,
-  }));
+  return data.results.map(
+    ({ id, title, release_date, poster_path, overview }) => ({
+      id,
+      title,
+      release_date,
+      poster_path,
+      overview,
+    })
+  );
 }

@@ -13,11 +13,12 @@ const GlobalStyle = createGlobalStyle`
 }
 body {
   margin: 0;
+  padding-top: 80px;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
     Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
   color: #212121;
   font-size: 16px;
-  background-color: #fff;
+
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
