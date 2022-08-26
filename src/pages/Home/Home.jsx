@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
-import { getPopularMovies } from 'service/FetchMovies';
+import { getPopularMovies, fetchAllaGenres } from 'service/FetchMovies';
 import {
   Title,
   MovieCardList,
@@ -9,13 +9,14 @@ import {
   CardTitle,
   LinkElem,
   Image,
+  Section,
+  ReleaseDate,
 } from './Home.styled';
 
 const Home = () => {
   const [movies, setMovies] = useState([]);
   const location = useLocation();
   const IMAGE_URL = 'https://image.tmdb.org/t/p/w300';
-  const style = { borderRadius: '4px' };
 
   useEffect(() => {
     getPopularMovies()
@@ -23,26 +24,29 @@ const Home = () => {
       .catch(error => console.log(error));
   }, []);
 
-  console.log('movies :>> ', movies);
+  fetchAllaGenres().then(data => console.log(data));
   return (
     <main>
-      <Title>Trending today</Title>
+      <Section>
+        <Title>Trending today</Title>
 
-      <MovieCardList>
-        {movies.map(({ id, title, name, poster_path }) => (
-          <MovieCard key={id}>
-            <LinkElem to={`/movies/${id}`} state={{ from: location }}>
-              <div>
-                <Image src={`${IMAGE_URL}${poster_path}`} alt="Movie Card" />
-                <CardBox>
-                  <CardTitle>{title || name}</CardTitle>
-                </CardBox>
-              </div>
-            </LinkElem>
-          </MovieCard>
-        ))}
-      </MovieCardList>
-      <Outlet />
+        <MovieCardList>
+          {movies.map(
+            ({ id, title, name, poster_path, release_date: releaseDate }) => (
+              <MovieCard key={id}>
+                <LinkElem to={`/movies/${id}`} state={{ from: location }}>
+                  <Image src={`${IMAGE_URL}${poster_path}`} alt="Movie Card" />
+                  <CardBox>
+                    <CardTitle>{title || name}</CardTitle>
+                    {/* <ReleaseDate>{releaseDate.substr(0, 4)}</ReleaseDate> */}
+                  </CardBox>
+                </LinkElem>
+              </MovieCard>
+            )
+          )}
+        </MovieCardList>
+        <Outlet />
+      </Section>
     </main>
   );
 };

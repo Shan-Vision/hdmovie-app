@@ -1,55 +1,61 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
+export const Section = styled.section``;
+
 export const Title = styled.h1`
   margin-bottom: 30px;
-  font-size: 48px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  text-align: center;
-
-  color: black;
-  /* text-shadow: 1px 1px 3px red; */
-  text-shadow: 1px 1px 2px black, 0 0 50px black, 0 0 5px violet;
+  font-size: 40px;
+  background: linear-gradient(0deg, #b527b5, #3bd9d9);
+  text-transform: capitalize;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 `;
 
 export const MovieCardList = styled.ul`
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 24px;
   padding: 0 10px;
 `;
 export const MovieCard = styled.li`
-  max-width: 300px;
+  max-width: 250px;
   border-radius: 4px;
-  background-color: black;
-  :hover,
-  :focus {
-    box-shadow: grey 10px 8px 8px 5px;
-  }
 `;
 
 export const Image = styled.img`
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
+  border-radius: 4px;
+  margin-bottom: 10px;
 `;
 export const CardBox = styled.div`
-  background: #2e3135;
-  height: 72px;
+  height: 36px;
   display: flex;
-  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 15px;
   padding-left: 8px;
-  /* justify-content: center; */
-  align-items: center;
-  border-bottom-left-radius: 8px;
-  border-bottom-right-radius: 8px;
 `;
 
 export const CardTitle = styled.h5`
-  color: #fef102;
+  color: rgb(153, 156, 159);
 `;
+
+export const ReleaseDate = styled.span`
+  font-size: 16px;
+  color: rgb(153, 156, 159);
+`;
+
 export const LinkElem = styled(NavLink)`
   width: 100%;
   height: 100%;
   border-radius: 4px;
+  :hover ${Image}, :focus ${Image} {
+    /* box-shadow: 0px 3px 0px 0px #b527b5, 0px 4px 0px 0px #b527b5,
+        0px 5px 0px 0px #b527b5, 0px 6px 0px 0px #b527b5; */
+    box-shadow: 0 4px 4px #3bd9d9, 0 1px 6px #3bd9d9, 0 8px 8px #b527b5,
+      0 16px 16px #b527b5, 8px 32px 32px #b527b5;
+  }
+  :hover ${CardTitle}, :focus ${CardTitle} {
+    color: #3bd9d9;
+  }
 `;

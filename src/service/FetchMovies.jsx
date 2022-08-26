@@ -86,6 +86,18 @@ export function getMovieReviews(id) {
     .catch(error => console.log(error));
 }
 
+export function fetchAllaGenres() {
+  return fetch(`${BASE_URL}genre/movie/list?api_key=${API_KEY}&language=en-US`)
+    .then(response => {
+      if (response.ok) {
+        return response.json();
+      }
+      return Promise.reject(new Error('Something went wrong'));
+    })
+    .then(data => data.genres)
+    .catch(error => console.log(error));
+}
+
 function mapper(data) {
   return data.results.map(
     ({ id, title, release_date, poster_path, overview }) => ({

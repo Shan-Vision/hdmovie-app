@@ -8,10 +8,10 @@ const AppBar = () => {
       <Header>
         <Navigation>
           <NavItem to="/">
-            <IoIosHome size="20px" /> Home
+            <IoIosHome size="24px" /> Home
           </NavItem>
           <NavItem to="movies">
-            <RiMovie2Fill size="20px" />
+            <RiMovie2Fill size="24px" />
             Movies
           </NavItem>
         </Navigation>
