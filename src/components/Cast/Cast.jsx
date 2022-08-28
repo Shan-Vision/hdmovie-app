@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getMovieCredits } from 'service/FetchMovies';
-import { CastItemInfo, InfoBox, CastList } from './Cast.styled';
+import { CastItemInfo, InfoBox, CastList, Image } from './Cast.styled';
 import ImageDefault from '../../poster/poster.jpg';
 
 const Cast = () => {
@@ -23,10 +23,9 @@ const Cast = () => {
             .slice(0, 21)
             .map(({ character, original_name, profile_path: avatar, id }) => (
               <CastItemInfo key={id}>
-                <img
+                <Image
                   src={avatar ? `${IMAGE_URL}${avatar}` : ImageDefault}
                   alt={original_name}
-                  width="150"
                 />
                 <InfoBox>
                   <p>

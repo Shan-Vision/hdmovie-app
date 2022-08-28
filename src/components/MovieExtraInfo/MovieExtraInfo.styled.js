@@ -11,22 +11,27 @@ export const List = styled.ul`
 export const NavItem = styled(NavLink)`
   font-size: 20px;
   font-weight: 500;
-  color: inherit;
+  color: #fff;
   padding: 0 5px;
   border-radius: 4px;
-  display:flex;
+  display: flex;
   justify-content: center;
   align-items: center;
   gap: 3px;
   &.active {
-    color: tomato;
+    color: #b527b5;
+  }
+  :hover:not(.active) {
+    color: #3bd9d9;
   }
 `;
+
 export const Caption = styled.p`
-font-weight: 500;
-`
+  font-weight: 500;
+  color: #fff;
+`;
 
 export const Container = styled.div`
   border-bottom: 3px solid #ccc;
-  margin-bottom: 15px;
+  margin-bottom: 35px;
 `;

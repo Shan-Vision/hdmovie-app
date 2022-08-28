@@ -1,4 +1,4 @@
-import { NavItem, Header, Navigation } from './AppBar.styled';
+import { NavItem, Header, Navigation, LogoTitle } from './AppBar.styled';
 import { IoIosHome } from 'react-icons/io';
 import { RiMovie2Fill } from 'react-icons/ri';
 
@@ -15,6 +15,7 @@ const AppBar = () => {
             Movies
           </NavItem>
         </Navigation>
+        <LogoTitle>HDMovie App</LogoTitle>
       </Header>
     </>
   );

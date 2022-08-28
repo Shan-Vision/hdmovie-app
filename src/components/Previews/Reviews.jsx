@@ -1,23 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getMovieReviews } from 'service/FetchMovies';
-import styled from 'styled-components';
+import { ReviewList, ReviewItem } from './Previews.styled';
 
-const ReviewList = styled.ul`
-  display: flex;
-  flex-wrap: wrap;
-  gap: 15px;
-`;
-const ReviewItem = styled.li`
-  min-width: 320px;
-  padding: 10px 15px;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
-  border-radius: 4px;
-  background-color: #fff;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-`;
 const Reviews = () => {
   const { movieId } = useParams();
   const [reviews, setReviews] = useState([]);
@@ -47,5 +32,3 @@ const Reviews = () => {
 };
 
 export default Reviews;
-
-// {credits?.length === 0 && }

@@ -1,8 +1,7 @@
-// import { useState } from 'react';
 import { useEffect, useState } from 'react';
 import { useParams, Outlet, useLocation } from 'react-router-dom';
 import { IoArrowBack } from 'react-icons/io5';
-import { getMovieById } from 'service/FetchMovies';
+import { getMovieDetails } from 'service/FetchMovies';
 import MovieExtraInfo from 'components/MovieExtraInfo/MovieExtraInfo';
 import {
   Container,
@@ -10,25 +9,25 @@ import {
   List,
   NavItem,
   Image,
+  Overview,
 } from './MovieDetails.styled';
-import styled from 'styled-components';
 
 const MovieDetails = () => {
   const { movieId } = useParams();
   const [detail, setDetail] = useState([]);
   const location = useLocation();
   const genreList = [];
-  const IMAGE_URL = 'https://image.tmdb.org/t/p/original';
+  const IMAGE_URL = 'https://image.tmdb.org/t/p/w500';
 
   useEffect(() => {
-    getMovieById(movieId).then(movie => setDetail(movie));
+    getMovieDetails(movieId).then(movie => setDetail(movie));
   }, [movieId]);
   if (!detail.genres) {
     return null;
   }
   detail.genres.map(genre => genreList.push(genre.name));
   const { poster_path, original_title, release_date, overview } = detail;
-  console.log('locationDetails :>> ', location.state);
+
   const backLinkHref = location.state?.from ?? '/movies';
 
   return (
@@ -46,7 +45,7 @@ const MovieDetails = () => {
             </h1>
             <p>User Score: 100% </p>
             <h2>Overview</h2>
-            <p>{overview}</p>
+            <Overview>{overview}</Overview>
             <h3>Genres</h3>
             <List>
               {genreList.length > 0 &&

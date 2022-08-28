@@ -6,10 +6,7 @@ export const Section = styled.section``;
 export const Title = styled.h1`
   margin-bottom: 30px;
   font-size: 40px;
-  background: linear-gradient(0deg, #b527b5, #3bd9d9);
-  text-transform: capitalize;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: rgb(153, 156, 159);
 `;
 
 export const MovieCardList = styled.ul`
@@ -40,18 +37,11 @@ export const CardTitle = styled.h5`
   color: rgb(153, 156, 159);
 `;
 
-export const ReleaseDate = styled.span`
-  font-size: 16px;
-  color: rgb(153, 156, 159);
-`;
-
 export const LinkElem = styled(NavLink)`
   width: 100%;
   height: 100%;
   border-radius: 4px;
   :hover ${Image}, :focus ${Image} {
-    /* box-shadow: 0px 3px 0px 0px #b527b5, 0px 4px 0px 0px #b527b5,
-        0px 5px 0px 0px #b527b5, 0px 6px 0px 0px #b527b5; */
     box-shadow: 0 4px 4px #3bd9d9, 0 1px 6px #3bd9d9, 0 8px 8px #b527b5,
       0 16px 16px #b527b5, 8px 32px 32px #b527b5;
   }

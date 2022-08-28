@@ -1,7 +1,6 @@
 const BASE_URL = 'https://api.themoviedb.org/3/';
 const API_KEY = '8302862792abaeee103b53516f1a680a';
 
-// using this fetch at home page, to get all popular/trending movies
 export function getPopularMovies() {
   return fetch(`${BASE_URL}trending/movie/week?api_key=${API_KEY}`)
     .then(response => {
@@ -14,8 +13,7 @@ export function getPopularMovies() {
     .catch(error => console.log(error));
 }
 
-// using this fetch in MovieDetails page to get more detailed information about movie by using unique id
-export function getMovieById(id) {
+export function getMovieDetails(id) {
   return fetch(`${BASE_URL}movie/${id}?api_key=${API_KEY}&language=en-US`)
     .then(response => {
       if (response.ok) {
@@ -43,7 +41,6 @@ export function getMovieById(id) {
     .catch(error => console.log(error));
 }
 
-// using this fetch at Movie page, to get a bunch of movies by the same search-name.
 export function getMovieListByName(query) {
   return fetch(
     `${BASE_URL}search/movie?api_key=${API_KEY}&language=en-US&query=${query}&include_adult=false`
@@ -86,8 +83,8 @@ export function getMovieReviews(id) {
     .catch(error => console.log(error));
 }
 
-export function fetchAllaGenres() {
-  return fetch(`${BASE_URL}genre/movie/list?api_key=${API_KEY}&language=en-US`)
+export function getAllGenres() {
+  return fetch(`${BASE_URL}genre/movie/list?api_key=${API_KEY}`)
     .then(response => {
       if (response.ok) {
         return response.json();
@@ -98,14 +95,29 @@ export function fetchAllaGenres() {
     .catch(error => console.log(error));
 }
 
+export function getGenreListById(id) {
+  return fetch(
+    `${BASE_URL}discover/movie?api_key=${API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_genres=${id}&with_watch_monetization_types=flatrate`
+  )
+    .then(response => {
+      if (response.ok) {
+        return response.json();
+      }
+      return Promise.reject(new Error('Something went wrong'));
+    })
+    .then(data => data.results)
+    .catch(error => console.log(error));
+}
+
 function mapper(data) {
   return data.results.map(
-    ({ id, title, release_date, poster_path, overview }) => ({
+    ({ id, title, release_date, poster_path, overview, genre_ids }) => ({
       id,
       title,
       release_date,
       poster_path,
       overview,
+      genre_ids,
     })
   );
 }

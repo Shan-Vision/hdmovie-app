@@ -4,7 +4,6 @@ import { Box } from '../../components/Box';
 import { getMovieListByName } from 'service/FetchMovies';
 import MovieList from 'components/MovieList/MovieList';
 import { Button, Form, Input } from './Movies.styled';
-// import {  Outlet } from 'react-router-dom';
 
 const Movies = () => {
   const [movieList, setMovieList] = useState([]);
